@@ -4,8 +4,7 @@ import streamlit as st
 import plotly.express as px 
 import numpy as np
 st.set_page_config(layout="wide", page_title="Sales EDA", initial_sidebar_state="expanded")
-
-df=pd.read_csv('E:/preprocessing 8/cleaning_df.csv',index_col=0)
+df=pd.read_csv('cleaning_df.csv', index_col=0)
 st.set_page_config(layout='wide')
 state=st.sidebar.selectbox('State',df.state.unique())
 city=st.sidebar.selectbox('city',df.city.unique())
@@ -22,6 +21,7 @@ prod_count = (df_2['Product']
               .rename(columns={'index': 'Product'})
               .head(top_n))
 st.plotly_chart(px.bar(prod_count,x='Product',y='count',title=f'the nmost popular {top_n}'))
+
 
 
 
