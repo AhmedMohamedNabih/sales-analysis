@@ -14,6 +14,11 @@ top_n=st.sidebar.slider('Top N',min_value=1,max_value=df['Product'].nunique(),va
 
 df_2 = df[(df['state'] == state) & (df['city'] == city) & (df['Order Date'] >= str(Start_date)) & (df['Order Date'] <= str(End_date))]
 st.dataframe(df_2)
-prod_count=df_2['Product'].value_counts().reset_index().head(top_n)
+prod_count = (df_2['Product']
+              .value_counts()
+              .reset_index(name='count')
+              .rename(columns={'index': 'Product'})
+              .head(top_n))
 st.plotly_chart(px.bar(prod_count,x='Product',y='count',title=f'the nmost popular {top_n}'))
+
 
