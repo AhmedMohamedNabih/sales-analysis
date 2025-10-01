@@ -9,8 +9,10 @@ st.plotly_chart(px.pie(df,names='city'))
 rev_city=df.groupby('city')['Price Each'].sum().sort_values(ascending=False).reset_index()
 st.title('what is the totla number of order per state ? ')
 st.plotly_chart(px.bar(rev_city,'city',y='Price Each',labels={'Price Each' :'Total Rev'},text_auto=True))
+df['Order Date'] = pd.to_datetime(df['Order Date'], errors='coerce'
 df_sorted=df.sort_values(by='Order Date')
 df_sorted['com_rev']=df_sorted['Price Each'].cumsum().round(2)
 st.title('what is cmulatitave revenue from start data till and end ?')
 st.plotly_chart(px.line(df_sorted,x='Order Date',y='com_rev'))
+
 
